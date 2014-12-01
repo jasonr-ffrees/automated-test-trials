@@ -18,6 +18,9 @@ public class ElementsPage extends Page{
 	@FindBy(id="but2")
 	private WebElement button2;
 	
+	@FindBy(id="notHere")
+	private WebElement missingElement;
+	
 	public static ElementsPage navigateTo(WebDriver driver, String base_url)
 	{
 		driver.navigate().to(base_url);
@@ -32,6 +35,11 @@ public class ElementsPage extends Page{
 	public void clickButton2()
 	{
 		button2.click();
+	}
+	
+	public void findMissingElement()
+	{
+		missingElement.click();
 	}
 
 }
