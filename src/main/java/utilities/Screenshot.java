@@ -20,7 +20,7 @@ public class Screenshot extends TestListenerAdapter{
 		{
 			WebDriver driver = TestBase.getDriverInstance();
 			File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-			String destDir = "target/surefire-reports/junitreports/" + tr.getTestClass().getName();
+			String destDir = "target/surefire-reports/" + tr.getTestClass().getName();
 			new File(destDir).mkdirs();
 			String destFile = "failure.png";
 		
