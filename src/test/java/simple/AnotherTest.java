@@ -3,11 +3,13 @@ package simple;
 import org.testng.annotations.*;
 
 import pages.ElementsPage;
+import utilities.Screenshot;
 import utilities.TestBase;
 
+@Listeners({Screenshot.class})
 public class AnotherTest extends TestBase{
 	
-	@Test(groups="another")
+	@Test(groups={"all","another"})
 	public void anotherTest()
 	{
 		ElementsPage elements = ElementsPage.navigateTo(driver, base_url);
