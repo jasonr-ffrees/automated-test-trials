@@ -16,19 +16,21 @@ public class Screenshot extends TestListenerAdapter{
 	@Override
 	public void onTestFailure(ITestResult tr)
 	{
-		WebDriver driver = TestBase.getDriverInstance();
-		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		String destDir ="target/surefire-reports/screenshots";
-		new File(destDir).mkdirs();
-		String destFile = "test";
+		if(!tr.isSuccess())
+		{
+			WebDriver driver = TestBase.getDriverInstance();
+			File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			String destDir ="target/surefire-reports/" + tr.getTestClass().getName();
+			new File(destDir).mkdirs();
+			String destFile = "failure.png";
 		
-		try{
-			FileUtils.copyFile(srcFile, new File(destDir + "/" + destFile));
-		} catch(IOException e) {
-			e.printStackTrace();
+			try{
+				FileUtils.copyFile(srcFile, new File(destDir + "/" + destFile));
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		
+			//Reporter.log("<a href=../screenshots/" + destFile + "> " + tr.getMethod() + "</a>" );
 		}
-		Reporter.log("<a href=../screenshots/" + destFile + ">Screenshot</a>" );
-		
 	}
-
 }

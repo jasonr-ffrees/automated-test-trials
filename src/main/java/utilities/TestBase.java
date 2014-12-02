@@ -7,7 +7,6 @@ import org.testng.annotations.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-@Listeners({Screenshot.class})
 public class TestBase {
 	
 	private Configuration config = new Configuration();
