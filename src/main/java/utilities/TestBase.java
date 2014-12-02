@@ -5,12 +5,15 @@ import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.events.WebDriverEventListener;
 
 public class TestBase {
 	
 	private Configuration config = new Configuration();
 	protected String base_url;
 	public WebDriver driver;
+	public WebDriverEventListener eventListener = new EventListener();
 	
 	@BeforeClass(alwaysRun=true)
 	public void setUp()
@@ -35,7 +38,8 @@ public class TestBase {
 		WebDriver driver = null;
 		if(config.browser.equals("firefox"))
 		{
-			driver = new FirefoxDriver();
+			WebDriver baseDriver = new FirefoxDriver();
+			driver = new EventFiringWebDriver(baseDriver).register(eventListener);
 		}
 		return driver;
 	}
