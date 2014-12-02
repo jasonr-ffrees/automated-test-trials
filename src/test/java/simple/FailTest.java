@@ -7,7 +7,6 @@ import pages.ElementsPage;
 import utilities.Screenshot;
 import utilities.TestBase;
 
-@Listeners({Screenshot.class})
 public class FailTest extends TestBase{
 	
 	@Test(groups={"all","fail"})

@@ -2,11 +2,12 @@ package utilities;
 
 import java.util.concurrent.TimeUnit;
 
-import org.testng.annotations.Listeners;
 import org.testng.annotations.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+
+@Listeners({Screenshot.class})
 public class TestBase {
 	
 	private Configuration config = new Configuration();

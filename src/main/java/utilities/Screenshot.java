@@ -8,10 +8,15 @@ import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 import org.testng.Reporter;
 
+import com.safaribooks.junitattachments.CaptureFile;
+
 import java.io.File;
 import java.io.IOException;
 
 public class Screenshot extends TestListenerAdapter{
+	
+	@CaptureFile(extension = "png")
+	public byte[] capturePage = null;
 	
 	@Override
 	public void onTestFailure(ITestResult tr)
@@ -20,7 +25,7 @@ public class Screenshot extends TestListenerAdapter{
 		{
 			WebDriver driver = TestBase.getDriverInstance();
 			File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-			String destDir = tr.getTestClass().getName();
+			String destDir = "target/surefire-reports/junitreports/" + tr.getTestClass().getName();
 			new File(destDir).mkdirs();
 			String destFile = "failure.png";
 		
