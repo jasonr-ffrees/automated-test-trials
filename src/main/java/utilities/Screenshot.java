@@ -22,7 +22,7 @@ public class Screenshot extends TestListenerAdapter{
 			
 			WebDriver driver = TestBase.getDriverInstance();
 			File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-			String destDir = "target/surefire-reports/" + tr.getTestClass().getName();
+			String destDir = "target/surefire-reports/screenshots/" + tr.getTestClass().getName();
 			new File(destDir).mkdirs();
 			String destFile = "failure.png";
 		
@@ -32,7 +32,7 @@ public class Screenshot extends TestListenerAdapter{
 				e.printStackTrace();
 			}
 		
-			Reporter.log("*********here is some reporter output!!!!!" );
+			Reporter.log("<a href=../screenshots/" + tr.getTestClass().getName() + "/" + destFile + ">" + tr.getMethod().getMethodName() + "</a>");
 		}
 	}
 }
