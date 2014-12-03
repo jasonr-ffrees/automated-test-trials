@@ -18,6 +18,8 @@ public class Screenshot extends TestListenerAdapter{
 	{
 		if(!tr.isSuccess())
 		{
+	
+			
 			WebDriver driver = TestBase.getDriverInstance();
 			File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 			String destDir = "target/surefire-reports/" + tr.getTestClass().getName();
@@ -30,7 +32,7 @@ public class Screenshot extends TestListenerAdapter{
 				e.printStackTrace();
 			}
 		
-			//Reporter.log("<a href=../screenshots/" + destFile + "> " + tr.getMethod() + "</a>" );
+			Reporter.log("*********here is some reporter output!!!!!" );
 		}
 	}
 }

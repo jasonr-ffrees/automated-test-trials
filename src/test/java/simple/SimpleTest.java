@@ -8,6 +8,7 @@ import utilities.TestBase;
 
 public class SimpleTest extends TestBase{
 	
+	
 	@Test(groups={"all","simple"})
 	public void aSimpleTest()
 	{
