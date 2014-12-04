@@ -28,10 +28,11 @@ public class Configuration {
 			Assert.fail("properties file not found");
 		}
 		this.base_url = props.getProperty("base.url");
-		this.browser = props.getProperty("driver.browser");
 		this.timeout = Integer.parseInt(props.getProperty("driver.timeout"));
 		this.maximise = Boolean.parseBoolean(props.getProperty("driver.maximise"));
 		this.closeOnFail = Boolean.parseBoolean(props.getProperty("driver.close.on.fail"));
+		
+		this.browser = System.getProperty("browser");
 	}
 
 }

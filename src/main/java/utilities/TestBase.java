@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 
@@ -35,9 +36,24 @@ public class TestBase {
 	private WebDriver selectDriver()
 	{
 		WebDriver driver = null;
-		if(config.browser.equals("firefox"))
+		String browser = config.browser;
+		String os = System.getProperty("os.name");
+		String arch = System.getProperty("os.arch");
+		
+		if(browser.equals("firefox"))
 		{
 			driver = new FirefoxDriver();
+		}
+		else if(browser.equals("chrome"))
+		{
+			if(os.toLowerCase().contains("linux"))
+			{
+				if(arch.contains("64"))
+				{
+					System.setProperty("webdriver.chrome.driver", "drivers/chromedriver_linux_64");
+				}
+			}				
+			driver = new ChromeDriver();
 		}
 		return driver;
 	}
