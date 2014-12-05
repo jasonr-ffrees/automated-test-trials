@@ -1,11 +1,6 @@
 package utilities;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.TestListenerAdapter;
 import org.testng.Reporter;
 
 import java.awt.AWTException;
@@ -18,14 +13,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Screenshot extends TestListenerAdapter{
+public class Screenshot {
 	
-	@Override
-	public void onTestFailure(ITestResult tr)
+	public void captureScreenshot(String testName)
 	{
-		if(!tr.isSuccess())
 		{
-			String imagePath = "screenshots/" + tr.getTestClass().getName() + "/";
+			String imagePath = "screenshots/" + testName + "/";
 			
 			BufferedImage img = null;
 			try{
@@ -50,7 +43,12 @@ public class Screenshot extends TestListenerAdapter{
 			
 			String imageHref = "../" + imagePath + destFile;
 			//create thumbnail
-			Reporter.log("<a href=" + imageHref + "><img src=" + imageHref + " width=200 height=200></img><br/>" + tr.getTestClass().getName() + "</a>");
+			Reporter.log("<a href=" + imageHref + "><img src=" + imageHref + " width=200 height=200></img><br/>" + testName + "</a>");
 		}
+	}
+	
+	public void captureFailureScreenshot(ITestResult tr)
+	{
+		captureScreenshot(tr.getTestClass().getName());
 	}
 }

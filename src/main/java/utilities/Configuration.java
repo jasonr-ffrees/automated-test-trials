@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 
 public class Configuration {
+	private String env;
 	
 	public String base_url;
 	public String browser;
@@ -20,7 +21,7 @@ public class Configuration {
 	{
 		Properties props = new Properties();
 		try{
-			String env = System.getProperty("env", "localhost");
+			env = System.getProperty("env", "localhost");
 			FileInputStream propsFile = new FileInputStream(env + ".properties");
 			props.load(propsFile);
 		}
@@ -32,7 +33,16 @@ public class Configuration {
 		this.maximise = Boolean.parseBoolean(props.getProperty("driver.maximise"));
 		this.closeOnFail = Boolean.parseBoolean(props.getProperty("driver.close.on.fail"));
 		
-		this.browser = System.getProperty("browser");
+		//if running locally use browser from properties file
+		if(env == "localhost")
+		{
+			this.browser = props.getProperty("driver.browser");
+		}
+		//else if running on jenkins run from select browser from job parameters 
+		else
+		{
+			this.browser = System.getProperty("browser");
+		}
 	}
 
 }

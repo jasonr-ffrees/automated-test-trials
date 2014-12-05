@@ -11,7 +11,7 @@ public class FailTest extends TestBase{
 	
 	@Test(groups={"all","fail"})
 	public void failTest()
-	{
+	{	
 		ElementsPage e = ElementsPage.navigateTo(driver, base_url);
 		e.findMissingElement();
 	}

@@ -3,7 +3,6 @@ package simple;
 import org.testng.annotations.*;
 
 import pages.ElementsPage;
-import utilities.Screenshot;
 import utilities.TestBase;
 
 public class SimpleTest extends TestBase{
